@@ -1,8 +1,12 @@
 package com.gmail.gasevskyV.tracker.entity;
 
-import javax.persistence.Entity;
+import org.springframework.security.core.GrantedAuthority;
 
-@Entity
-public enum  Role {
+public enum  Role implements GrantedAuthority {
     USER;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }

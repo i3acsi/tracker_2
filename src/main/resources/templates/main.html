@@ -1,11 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <title>Main Page</title>
 </head>
 <body>
-<h2>Here will be smth</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10.offset-md-10">
+            <h2>Item List</h2>
+            <div th:if="${itemList}">
+                <table class="table">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>id</th>
+                        <th>Task</th>
+                        <th>Description</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                        <th>Status</th>
+                        <th>Author</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <ul  th:each="pet : ${petCollection}">
+                        <li class="list-group-item">
+                            <span th:text="${pet.petName}">Dapibus ac facilisis in</span>
+                            <button class="badge" onclick="window.location.href='/'">Continue</button>
+                            <button type="submit" class="badge">Info</button>
+                        </li>
+                    </ul>
+                        <!--<td th:text="${item.id}">n/a</td>-->
+                        <!--<td th:text="${item.task}">n/a</td>-->
+                        <!--<td th:text="${item.description}">n/a</td>-->
+                        <!--<td th:text="${item.created}">n/a</td>-->
+                        <!--<td th:text="${item.updated}">n/a</td>-->
+                        <!--<td th:switch="${item.active}">-->
+                            <!--<p th:case="true">active</p>-->
+                            <!--<p th:case="false">not active</p>-->
+                        <!--</td>-->
+                        <!--<td th:text="${item.author}">n/a</td>-->
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="col-md">
+            <h2>Add new order</h2>
+            <form th:action="@{/main}" method="get">
+                <form>
+                    <div class="form-group">
+                        <label>Task</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="Task name"
+                               name="task">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control form-control-sm" placeholder="Task description"
+                                  name="description" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
 
 </body>
 </html>
