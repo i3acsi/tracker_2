@@ -17,8 +17,7 @@ public class RegController {
     private final UserRepo userRepo;
 
     @GetMapping("/signup")
-    public String regPage(Model model){
-        model.addAttribute("defaultName", "Name");
+    public String regPage(){
         return "signup";
     }
 
@@ -31,7 +30,7 @@ public class RegController {
             return "/signup";
         } else {
             user.setActive(true);
-            user.setRoles(Collections.singleton(Role.USER));
+            user.setRoles(Collections.singleton(Role.ROLE_USER));
             userRepo.save(user);
         }
 

@@ -5,9 +5,8 @@
 
 
     <changeSet id="1.2.0" author="vasiliy.gasevskiy">
-        <modifyDataType
-                columnName="description"
-                newDataType="text"
-                schemaName="public"
-                tableName="trackitem"/>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
     </changeSet>
+</databaseChangeLog>

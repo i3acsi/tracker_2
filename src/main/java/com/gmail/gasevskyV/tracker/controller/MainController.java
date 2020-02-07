@@ -9,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.context.LazyContextVariable;
 
 import java.util.Date;
 import java.util.List;
@@ -23,14 +24,7 @@ public class MainController {
     public String main(
             @AuthenticationPrincipal User user,
             Model model) {
-        user.getRoles().forEach(role -> {
-            if (role.name().equals("USER")) {
-                List<Item> list = trackItemRepo.findAllByActive(true);
-                if (!list.isEmpty()) {
-                    model.addAttribute("itemList", list);
-                }
-            }
-        });
+        loadListOfItems(model, user);
         return "main";
     }
 
@@ -40,7 +34,6 @@ public class MainController {
             @RequestParam String task,
             @RequestParam String description,
             Model model) {
-        log.info("im here");
         Item item = new Item(task, description, user);
         item.setCreated(new Date());
         item.setUpdated(new Date());
@@ -48,17 +41,44 @@ public class MainController {
 
         trackItemRepo.save(item);
 
-        user.getRoles().forEach(role -> {
-            if (role.name().equals("USER")) {
-                model.addAttribute("itemList", trackItemRepo.findAllByActive(true));
-            }
-        });
+        loadListOfItems(model, user);
 
         return ("main");
     }
 
-    @PostMapping("/success")
-    public String redirect(){
+
+    @RequestMapping(value = "/success", method = {RequestMethod.GET, RequestMethod.POST})
+    public String redirect() {
         return "redirect:/main";
+    }
+
+    private void loadListOfItems(Model model, User user) {
+        user.getRoles().forEach(role -> {
+            if (role.name().equals("ROLE_USER")) {
+                List<Item> list = trackItemRepo.findAllByActive(true);
+                if (!list.isEmpty()) {
+                    model.addAttribute("itemList", list);
+                }
+            }
+            if (role.name().equals("ROLE_ADMIN")) {
+                model.addAttribute("isAdmin", true);
+            }
+        });
+    }
+
+    @RequestMapping(value = "/error" , method = {RequestMethod.GET, RequestMethod.POST})
+    public String error(){
+        return "redirect:/main";
+    }
+
+    private void lazyLoad(Model model) {
+        model.addAttribute("listItem",
+                new LazyContextVariable<List<Item>>() {
+                    @Override
+                    protected List<Item> loadValue() {
+                        return trackItemRepo.findAllByActive(true);
+                    }
+                }
+        );
     }
 }

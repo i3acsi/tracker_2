@@ -1,5 +1,6 @@
 package com.gmail.gasevskyV.tracker.config;
 
+import com.gmail.gasevskyV.tracker.entity.Role;
 import com.gmail.gasevskyV.tracker.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +21,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/", "/greeting", "/signup").permitAll()
+                    .antMatchers("/user/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
+
                 .and()
                     .formLogin()
                     .loginPage("/login")
@@ -28,7 +31,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .successForwardUrl("/success")
                 .and()
                     .logout()
-                    .permitAll();
+                    .permitAll()
+                .and().rememberMe()
+        ;
     }
 
     @Override

@@ -73,7 +73,7 @@
 
     <changeSet id="1.0.5" author="vasiliy.gasevskiy">
         <insert tableName="roles">
-            <column name="name" value="USER"/>
+            <column name="name" value="ROLE_USER"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
