@@ -20,13 +20,13 @@
     </ul>
     <!-- Навигационная панель содержимое -->
 </nav>
-<span th:text="${user.username}">text</span>
 <div class="container">
     <div class="row">
         <div class="col">
             <h2>User Edit</h2>
-            <form th:action="@{/userEdit}" method="post">
+            <form th:action="@{/user}" method="post">
                 <form>
+                    <input type="hidden" th:value="${user.id}" name="user_id">
                     <div class="form-group">
                         <label>User Name</label>
                         <input type="text" class="form-control form-control-sm" placeholder="Имя пользователя"
@@ -41,19 +41,33 @@
                     <div class="form-group">
                         <label>Old Password</label>
                         <input type="password" class="form-control form-control-sm" placeholder="Old Password"
-                               name="old_password">
+                               name="old_password" value="">
                     </div>
 
                     <div class="form-group">
                         <label>New Password</label>
                         <input type="password" class="form-control form-control-sm" placeholder="New Password"
-                               name="new_password">
+                               name="new_password" value="">
                     </div>
 
                     <div class="form-group">
-                        <label>Roles</label>
-                        <input type="checkbox" class="form-control form-control-sm" placeholder="roles"
-                               th:name="password">
+                        <ul>
+                            <li th:each="key: ${roles.keySet()}">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" th:checked="${roles.get(key)}"
+                                           id="${key}">
+                                    <label class="form-check-label" for="${key}">
+                                        <span th:text="${key}"></span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" th:checked="${user.active}" id="isActive" name="isActive">
+                            <label class="form-check-label" for="isActive">
+                                <span>isActive</span>
+                            </label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

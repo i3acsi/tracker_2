@@ -48,7 +48,11 @@
 
             <column name="role_id" type="BIGINT">
             </column>
+
+            <column name="roles" type="VARCHAR(20)">
+            </column>
         </createTable>
+
     </changeSet>
 
     <changeSet id="1.0.3" author="vasiliy.gasevskiy">
