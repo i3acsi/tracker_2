@@ -19,7 +19,7 @@ import java.util.List;
 public class MainController {
     private final TrackItemRepo trackItemRepo;
 
-    @RequestMapping(value = "/main", method = {RequestMethod.POST})
+    @RequestMapping(value = "/main", method = {RequestMethod.GET})
     public String main(
             @AuthenticationPrincipal User user,
             Model model) {
@@ -34,7 +34,7 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping(value = "/main", method = {RequestMethod.GET})
+    @RequestMapping(value = "/main", method = {RequestMethod.POST})
     public String addItem(
             @AuthenticationPrincipal User user,
             @RequestParam String task,
@@ -55,5 +55,10 @@ public class MainController {
         });
 
         return ("main");
+    }
+
+    @PostMapping("/success")
+    public String redirect(){
+        return "redirect:/main";
     }
 }

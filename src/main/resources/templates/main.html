@@ -11,13 +11,13 @@
     <title>Main Page</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container container-fluid">
     <div class="row">
-        <div class="col-lg-10.offset-md-10">
+        <div class="col">
             <h2>Item List</h2>
             <div th:if="${itemList}">
-                <table class="table">
-                    <thead class="thead-inverse">
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
                         <th>id</th>
                         <th>Task</th>
@@ -29,31 +29,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <ul  th:each="pet : ${petCollection}">
-                        <li class="list-group-item">
-                            <span th:text="${pet.petName}">Dapibus ac facilisis in</span>
-                            <button class="badge" onclick="window.location.href='/'">Continue</button>
-                            <button type="submit" class="badge">Info</button>
-                        </li>
-                    </ul>
-                        <!--<td th:text="${item.id}">n/a</td>-->
-                        <!--<td th:text="${item.task}">n/a</td>-->
-                        <!--<td th:text="${item.description}">n/a</td>-->
-                        <!--<td th:text="${item.created}">n/a</td>-->
-                        <!--<td th:text="${item.updated}">n/a</td>-->
-                        <!--<td th:switch="${item.active}">-->
-                            <!--<p th:case="true">active</p>-->
-                            <!--<p th:case="false">not active</p>-->
-                        <!--</td>-->
-                        <!--<td th:text="${item.author}">n/a</td>-->
+                    <tr th:each="item : ${itemList}">
+                        <td th:text="${item.id}">n/a</td>
+                        <td th:text="${item.task}">n/a</td>
+                        <td th:text="${item.description}">n/a</td>
+                        <td th:text="${item.created}">n/a</td>
+                        <td th:text="${item.updated}">n/a</td>
+                        <td th:switch="${item.active}">
+                            <p th:case="true">active</p>
+                            <p th:case="false">not active</p>
+                        </td>
+                        <td th:text="${item.author}">n/a</td>
+                    </tr>
                     </tbody>
                 </table>
 
             </div>
         </div>
-        <div class="col-md">
+        <div class="col-sm">
             <h2>Add new order</h2>
-            <form th:action="@{/main}" method="get">
+            <form th:action="@{/main}" method="post">
                 <form>
                     <div class="form-group">
                         <label>Task</label>
