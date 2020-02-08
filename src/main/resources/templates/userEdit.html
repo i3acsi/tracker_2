@@ -55,7 +55,7 @@
                             <li th:each="key: ${roles.keySet()}">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" th:checked="${roles.get(key)}"
-                                           id="${key}">
+                                           id="${key}" th:name="${key}">
                                     <label class="form-check-label" for="${key}">
                                         <span th:text="${key}"></span>
                                     </label>
@@ -63,7 +63,7 @@
                             </li>
                         </ul>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" th:checked="${user.active}" id="isActive" name="isActive">
+                            <input class="form-check-input" type="checkbox" th:checked="${user.active}" id="isActive" th:name="isActive">
                             <label class="form-check-label" for="isActive">
                                 <span>isActive</span>
                             </label>
