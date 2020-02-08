@@ -46,6 +46,12 @@ public class UserController {
         return "userEdit";
     }
 
+    @DeleteMapping
+    public String delete(){
+        log.info("IM HERE / DEL");
+        return "redirect:/user";
+    }
+
     @PostMapping
     public String changeUser(@AuthenticationPrincipal User userAuth,
                              @RequestParam Map<String, Object> map,
