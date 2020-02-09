@@ -46,9 +46,14 @@ public class UserController {
         return "userEdit";
     }
 
-    @DeleteMapping
-    public String delete(){
-        log.info("IM HERE / DEL");
+    @PostMapping("{user}")
+    public String delete(@AuthenticationPrincipal User userAuth,
+                         @PathVariable User user,
+                         Model model) {
+        if (userAuth.getRoles().contains(Role.ROLE_ADMIN)) {
+            userRepo.delete(user);
+            model.addAttribute("message", "user was deleted");
+        }
         return "redirect:/user";
     }
 
