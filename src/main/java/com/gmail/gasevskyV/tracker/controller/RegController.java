@@ -1,39 +1,42 @@
 package com.gmail.gasevskyV.tracker.controller;
 
-import com.gmail.gasevskyV.tracker.entity.Role;
 import com.gmail.gasevskyV.tracker.entity.User;
-import com.gmail.gasevskyV.tracker.repository.UserRepo;
+import com.gmail.gasevskyV.tracker.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.Collections;
 
 @Controller
 @AllArgsConstructor
 public class RegController {
-    private final UserRepo userRepo;
+    private final UserService userService;
 
     @GetMapping("/signup")
-    public String regPage(){
+    public String regPage() {
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String addUser(User user, Model model){
-        User userFromDB = userRepo.findByUsername(user.getUsername());
-
-        if (userFromDB != null){
+    public String addUser(User user, Model model) {
+        if (!userService.addUser(user)) {
             model.addAttribute("message", "User already exists!");
             return "/signup";
-        } else {
-            user.setActive(true);
-            user.setRoles(Collections.singleton(Role.ROLE_USER));
-            userRepo.save(user);
         }
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/activate/{code}")
+    public String activate(Model model, @PathVariable String code){
+        if (userService.activateUser(code)) {
+            model.addAttribute("message", "User successfully activated!");
+        } else {
+            model.addAttribute("message", "Activation code is not found.");
+        }
+
+        return "login";
     }
 }

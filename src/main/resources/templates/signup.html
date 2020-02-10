@@ -33,15 +33,21 @@
                 <form>
                     <div class="form-group">
                         <label>User Name</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="Имя пользователя" th:value="${defaultName}"
+                        <input type="text" class="form-control form-control-sm" placeholder="First name" th:value="${defaultName}"
                                name="username">
                     </div>
 
 
                     <div class="form-group">
-                        <label>User Name</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="Фамилия пользователя" value=""
+                        <label>Last name</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="Last name" value=""
                                name="surname">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control form-control-sm" placeholder="user@email.com" value=""
+                               name="email">
                     </div>
 
                     <div class="form-group">

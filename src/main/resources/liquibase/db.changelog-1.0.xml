@@ -26,6 +26,13 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="email" type="VARCHAR(250)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="activationCode" type="VARCHAR(100)">
+            </column>
+
         </createTable>
     </changeSet>
 
