@@ -1,6 +1,7 @@
 package com.gmail.gasevskyV.tracker.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -9,7 +10,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/signup").setViewName("signup");
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/loginIN").setViewName("loginIN");
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//        registry.addViewController("/login").setViewName("login");
 
     }
 

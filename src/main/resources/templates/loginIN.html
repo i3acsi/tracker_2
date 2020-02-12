@@ -25,11 +25,11 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <form th:action="@{/login}" method="post">
+            <form th:action="@{/loginIN}" method="post">
                 <form>
                     <div class="form-group">
                         <label>UserName</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="Имя пользователя"
+                        <input type="text" class="form-control form-control-sm" placeholder="User name or email."
                                name="username">
                     </div>
                     <div class="form-group">
@@ -43,6 +43,9 @@
         </div>
         <div class="col-md">
             <a href="/signup" class="btn btn-outline-primary" role="button">Sign up</a>
+        </div>
+        <div class="col-md">
+            <a href="/login" class="btn btn-outline-primary" role="button">Google oauth</a>
         </div>
         <div class="col-md"></div>
     </div>

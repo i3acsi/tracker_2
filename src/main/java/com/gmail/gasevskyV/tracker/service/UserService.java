@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -18,10 +19,15 @@ import java.util.UUID;
 public class UserService implements UserDetailsService {
     private final UserRepo userRepo;
     private final MailSender mailSender;
+    private final PasswordEncoder encoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepo.findByUsername(username);
+    }
+
+    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+        return userRepo.findByEmail(email);
     }
 
     public boolean addUser(User user){
@@ -29,6 +35,8 @@ public class UserService implements UserDetailsService {
         if (userFromDB!=null){
             return false;
         }
+        String password = user.getPassword();
+        user.setPassword(encoder.encode(password));
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.ROLE_USER));
         user.setActivationCode(UUID.randomUUID().toString());

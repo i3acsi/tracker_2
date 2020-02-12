@@ -15,7 +15,7 @@
             <column name="id" value="1"/>
             <column name="username" value="admin"/>
             <column name="surname" value="admin"/>
-            <column name="password" value="password"/>
+            <column name="password" value="$2y$12$9LfMJxZo6meaapDwG6vxvufMCB73NgqTHebpOmLVTyrCiN00auRzS"/>
             <column name="email" value="admin@email.com"/>
             <column name="activationCode" value=""/>
         </insert>
@@ -37,10 +37,10 @@
         </insert>
     </changeSet>
 
-    <changeSet id="1.2.4" author="vasiliy.gasevskiy">
-        <alterSequence sequenceName="hibernate_sequence"
-                       startValue="2"
-                       incrementBy="1"/>
-    </changeSet>
+    <!--<changeSet id="1.2.4" author="vasiliy.gasevskiy">-->
+        <!--<alterSequence sequenceName="hibernate_sequence"-->
+                       <!--startValue="2"-->
+                       <!--incrementBy="1"/>-->
+    <!--</changeSet>-->
 
 </databaseChangeLog>
