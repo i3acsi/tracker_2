@@ -7,13 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
+
 public interface UserRepo extends JpaRepository<User, Long> {
     User findByUsername(String username);
 
     User findByEmail(String email);
 
-    User findByGoogleName(String googleName);
+//    User findByGoogleName(String googleName);
 
     Optional<User> findById(Long id);
 
