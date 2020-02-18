@@ -41,14 +41,11 @@ public class LoginController {
 //
 //    }
     @GetMapping("/oauth")
-    public String user(ModelMap model, @AuthenticationPrincipal User user) {
+    public String user(@AuthenticationPrincipal OAuth2User oAuth2User) {
 //        oAuth2User.getAttributes().forEach((k,v)-> System.out.println("key: " +k+"#
 // value:" + v));
-//        User user = userService.oauth(oAuth2User); //page=1&limit=50
+        userService.oauth(oAuth2User); //page=1&limit=50
 
-        log.info(user.getUsername());
-
-        log.info(user.getEmail());
 
         return "redirect:/success";
     }

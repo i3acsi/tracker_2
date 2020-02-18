@@ -17,8 +17,7 @@ import java.util.Collection;
 
 @Component
 @Slf4j
-public class AuthProvider implements AuthenticationProvider
-{
+public class AuthProvider implements AuthenticationProvider {
     @Autowired
     private UserService userService;
 
@@ -26,32 +25,34 @@ public class AuthProvider implements AuthenticationProvider
     private PasswordEncoder passwordEncoder;
 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String username = authentication.getName();
-        String password = (String) authentication.getCredentials();
         log.info("################");
-        log.info("username: " + username);
-        log.info("password: " + password);
+        log.info("username: " + authentication.getName());
+        log.info("password: " + (String) authentication.getCredentials());
         log.info(authentication.getPrincipal().toString());
         log.info("################");
+        String username = authentication.getName();
+        String password = (String) authentication.getCredentials();
+
 
         User user = (User) userService.loadUserByUsername(username);
+        if (user == null) {
+            user = userService.loadUserByEmail(username.toLowerCase());
+        }
 
-        if(user != null && (user.getUsername().equals(username) || user.getEmail().equals(username))) {
-            if(!passwordEncoder.matches(password, user.getPassword()))
-            {
+        if (user != null && (user.getUsername().equals(username) || user.getEmail().equals(username.toLowerCase()))) {
+            if (!passwordEncoder.matches(password, user.getPassword())) {
                 throw new BadCredentialsException("Wrong password");
             }
 
             Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
 
             return new UsernamePasswordAuthenticationToken(user, password, authorities);
-        }
-        else
+        } else
             throw new BadCredentialsException("Username not found");
     }
 
-    public boolean supports(Class<?> arg)
-    {
+    public boolean supports(Class<?> arg) {
         return true;
     }
+
 }

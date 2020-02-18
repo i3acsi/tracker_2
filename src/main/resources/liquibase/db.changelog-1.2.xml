@@ -12,7 +12,7 @@
 
     <changeSet id="1.2.1" author="vasiliy.gasevskiy">
         <insert tableName="usr">
-            <column name="id" value="1"/>
+            <column name="id" value="0"/>
             <column name="username" value="admin"/>
             <column name="surname" value="admin"/>
             <column name="password" value="$2y$12$9LfMJxZo6meaapDwG6vxvufMCB73NgqTHebpOmLVTyrCiN00auRzS"/>
@@ -23,7 +23,7 @@
 
     <changeSet id="1.2.2" author="vasiliy.gasevskiy">
         <insert tableName="user_roles">
-            <column name="user_id" value="1"/>
+            <column name="user_id" value="0"/>
             <column name="role_id" value="1"/>
             <column name="roles" value="ROLE_USER"/>
         </insert>
@@ -31,7 +31,7 @@
 
     <changeSet id="1.2.3" author="vasiliy.gasevskiy">
         <insert tableName="user_roles">
-            <column name="user_id" value="1"/>
+            <column name="user_id" value="0"/>
             <column name="role_id" value="2"/>
             <column name="roles" value="ROLE_ADMIN"/>
         </insert>
