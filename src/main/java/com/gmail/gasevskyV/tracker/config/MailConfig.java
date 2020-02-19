@@ -1,7 +1,5 @@
 package com.gmail.gasevskyV.tracker.config;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

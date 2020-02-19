@@ -25,11 +25,6 @@ public class AuthProvider implements AuthenticationProvider {
     private PasswordEncoder passwordEncoder;
 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        log.info("################");
-        log.info("username: " + authentication.getName());
-        log.info("password: " + (String) authentication.getCredentials());
-        log.info(authentication.getPrincipal().toString());
-        log.info("################");
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();
 
