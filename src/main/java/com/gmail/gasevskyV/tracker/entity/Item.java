@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -17,7 +18,9 @@ public class Item {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Task can't be empty")
     private String task;
+    @NotBlank(message = "Description name can't be empty")
     private String description;
     @CreatedDate
     @Column(name = "created")

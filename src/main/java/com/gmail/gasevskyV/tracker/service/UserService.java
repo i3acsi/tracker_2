@@ -5,6 +5,7 @@ import com.gmail.gasevskyV.tracker.entity.User;
 import com.gmail.gasevskyV.tracker.repository.UserRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,8 +15,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -129,5 +133,10 @@ public class UserService implements UserDetailsService {
         }
         log.error("smth wrong user = null and oauthUser = null");
         return null;
+    }
+
+    public Set<GrantedAuthority> getAuthoritiesByGoogleId(String googleId) {
+        return userRepo.findByGoogleId(googleId).getAuthorities().stream().map(a -> (GrantedAuthority) a).collect(Collectors.toSet());
+
     }
 }

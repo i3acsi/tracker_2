@@ -6,6 +6,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Set;
@@ -17,12 +19,27 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "User name can't be empty")
     private String username;
+
+    @NotBlank(message = "Surname can't be empty")
     private String surname;
+
+    @NotBlank(message = "Password can't be empty")
     private String password;
+    @Transient
+    @NotBlank(message = "Password confirmation can't be empty")
+    private String password2;
+
     private Boolean active;
+
+    @Email(message="Email is not correct")
+    @NotBlank(message = "Email name can't be empty")
     private String email;
+
     private String activationCode;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YYYY-MM-dd HH:mm:ss")
     private LocalDateTime lastVisit = LocalDateTime.now();
 

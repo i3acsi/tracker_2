@@ -25,7 +25,7 @@ public class UserController {
     private final UserService userService;
     private final PasswordEncoder encoder;
 
-    @PreAuthorize("@userService.hasRoleAdmin(#oAuth2User, #userAuth)")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping
     public String userList(Model model,
                            @AuthenticationPrincipal OAuth2User oAuth2User,
