@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
 public interface TrackItemRepo extends JpaRepository<Item, Long> {
     Optional<Item> findById(Long id);
     List<Item> findAllByActive(Boolean active);

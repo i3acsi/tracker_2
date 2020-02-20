@@ -1,30 +1,61 @@
 package com.gmail.gasevskyV.tracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "usr")
 @Data
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "User name can't be empty")
     private String username;
+
+    @NotBlank(message = "Surname can't be empty")
     private String surname;
+
+    @NotBlank(message = "Password can't be empty")
     private String password;
+    @Transient
+    @NotBlank(message = "Password confirmation can't be empty")
+    private String password2;
+
     private Boolean active;
+
+    @Email(message="Email is not correct")
+    @NotBlank(message = "Email name can't be empty")
     private String email;
+
     private String activationCode;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YYYY-MM-dd HH:mm:ss")
+    private LocalDateTime lastVisit = LocalDateTime.now();
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    //    oauth
+    @Column(name = "google_id")
+    private String googleId;
+    @Column(name = "google_name")
+    private String googleName;
+    private String userpic;
+    private String gender;
+    private String locale;
 
     @Override
     public String toString() {
@@ -57,52 +88,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
 
         return getActive();
-    }
-
-    private void dosmth(Runnable r){
-        r.run();
-    }
-
-}
-
-class S{
-    static int i = 1;
-    static {
-        System.out.println("static S, i =" +i +" b= " + "not init");
-        i=4;
-        b=9;
-    }
-    static final int b;
-    int a = 4;
-    {
-        System.out.println("S non static, a="+a);
-        a=6;
-    }
-    public S(){
-        System.out.println("constructor S, i= "+ i + " a= "+a+" b="+b);
-    }
-}
-
-class C extends S{
-    static int ci = 99;
-    static {
-        System.out.println("static C, ci =" +ci +" cb= " + "not init");
-        ci=44;
-        cb=99;
-    }
-    static final int cb;
-    int ca = 4;
-    {
-        System.out.println("C non static, ca="+ca);
-        ca=6;
-    }
-    public C(){
-        System.out.println("constructor C, ci= "+ ci + " ca= "+ca+" cb="+cb);
-    }
-}
-
-class M{
-    public static void main(String[] args) {
-        C c = new C();
     }
 }

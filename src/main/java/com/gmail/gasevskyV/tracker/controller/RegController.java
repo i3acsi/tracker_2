@@ -3,6 +3,7 @@ package com.gmail.gasevskyV.tracker.controller;
 import com.gmail.gasevskyV.tracker.entity.User;
 import com.gmail.gasevskyV.tracker.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @AllArgsConstructor
 public class RegController {
     private final UserService userService;
+    private final PasswordEncoder encoder;
 
     @GetMapping("/signup")
     public String regPage() {
@@ -26,7 +28,7 @@ public class RegController {
             return "/signup";
         }
 
-        return "redirect:/login";
+        return "redirect:/loginIN";
     }
 
     @GetMapping("/activate/{code}")
@@ -37,6 +39,6 @@ public class RegController {
             model.addAttribute("message", "Activation code is not found.");
         }
 
-        return "login";
+        return "loginIN";
     }
 }

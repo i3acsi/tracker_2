@@ -19,7 +19,6 @@
             </column>
 
             <column name="password" type="VARCHAR(255)">
-                <constraints nullable="false"/>
             </column>
 
             <column name="active" type="BOOLEAN" defaultValue="TRUE">
@@ -31,6 +30,26 @@
             </column>
 
             <column name="activationCode" type="VARCHAR(100)">
+            </column>
+
+            <column name="last_visit" type="TIMESTAMP" defaultValue="NOW()"/>
+
+            <!--OAUTH PARAMS-->
+
+            <column name="google_id" type="VARCHAR(100)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+
+            <column name="google_name" type="VARCHAR(100)">
+            </column>
+
+            <column name="userpic" type="VARCHAR(255)">
+            </column>
+
+            <column name="gender" type="VARCHAR(100)">
+            </column>
+
+            <column name="locale" type="VARCHAR(100)">
             </column>
 
         </createTable>
