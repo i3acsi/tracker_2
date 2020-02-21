@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +19,7 @@
             <a class="nav-link" href="/user">User list <span class="sr-only">(current)</span></a>
         </li>
     </ul>
-            <!-- Навигационная панель содержимое -->
+    <!-- Навигационная панель содержимое -->
 </nav>
 
 <div class="container container-fluid">
@@ -41,10 +42,10 @@
                     <tbody>
                     <tr th:each="item : ${itemList}">
                         <!--<td th:if="$isAdmin">-->
-                            <!--<form method="del" action="del">-->
-                                <!---->
-                            <!--</form>-->
-                            <!--<a href="/login" class="btn btn-primary" role="button">Login</a>-->
+                        <!--<form method="del" action="del">-->
+                        <!---->
+                        <!--</form>-->
+                        <!--<a href="/login" class="btn btn-primary" role="button">Login</a>-->
                         <!--</td>-->
                         <td th:text="${item.id}">n/a</td>
                         <td th:text="${item.task}">n/a</td>
@@ -67,16 +68,24 @@
                 <form>
                     <div class="form-group">
                         <label>Task</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="Task name"
-                               name="task">
+                        <input type="text"
+                               class="form-control form-control-sm"
+                               th:classappend="${taskError} ? 'is-invalid': ''"
+                               th:value="${item!=null}? (${item.task!=null}? ${item.task}:'') : ''"
+                               placeholder="Task name"
+                               name="task"/>
+                        <div th:if="${taskError}" class="invalid-feedback" th:text="${taskError}"></div>
                     </div>
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control form-control-sm" placeholder="Task description"
+                        <textarea class="form-control form-control-sm"
+                                  th:classappend="${descriptionError} ? 'is-invalid': ''"
+                                  th:text="${item!=null}? (${item.description!=null}? ${item.description}:'') : ''"
+                                  placeholder="Task description"
                                   name="description" rows="3"></textarea>
+                        <div th:if="${descriptionError}" class="invalid-feedback" th:text="${descriptionError}"></div>
                     </div>
-
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </form>
