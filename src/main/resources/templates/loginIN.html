@@ -13,15 +13,14 @@
     <title>Login page </title>
 </head>
 <body>
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
-<div th:if="${message}">
-    <b th:text="${message}"></b>
+<div class="alert alert-danger" role="alert"
+     th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null and session[SPRING_SECURITY_LAST_EXCEPTION].message != null}"
+     th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-sm">

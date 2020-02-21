@@ -25,6 +25,9 @@
 <div th:unless="${message}">
     Type your name, surname and password to sign up
 </div>
+<div th:if="${usernameError}">
+    <b th:text="${usernameError}"></b>
+</div>
 
 <div class="container">
     <div class="row">
@@ -33,27 +36,56 @@
                 <form>
                     <div class="form-group">
                         <label>User Name</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="First name" th:value="${defaultName}"
-                               name="username">
+                        <input type="text"
+                               class="form-control form-control-sm"
+                               th:classappend="${usernameError} ? 'is-invalid': ''"
+                               placeholder="First name"
+                               th:value="${user!=null}? (${user.username !=null}? ${user.username}:'') : ''"
+                               name="username"/>
+                        <div th:if="${usernameError}" class="invalid-feedback" th:text="${usernameError}"></div>
                     </div>
 
 
                     <div class="form-group">
                         <label>Last name</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="Last name" value=""
-                               name="surname">
+                        <input type="text"
+                               class="form-control form-control-sm"
+                               th:classappend="${surnameError} ? 'is-invalid': ''"
+                               placeholder="Last name"
+                               th:value="${user!=null}? (${user.surname !=null}? ${user.surname}:'') : ''"
+                               name="surname"/>
+                        <div th:if="${surnameError}" class="invalid-feedback" th:text="${surnameError}"></div>
                     </div>
 
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control form-control-sm" placeholder="user@email.com" value=""
-                               name="email">
+                        <input type="email"
+                               class="form-control form-control-sm"
+                               th:classappend="${emailError} ? 'is-invalid': ''"
+                               placeholder="user@email.com"
+                               th:value="${user!=null}? (${user.email !=null}? ${user.email}:'') : ''"
+                               name="email"/>
+                        <div th:if="${emailError}" class="invalid-feedback" th:text="${emailError}"></div>
                     </div>
 
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control form-control-sm" placeholder="Password"
+                        <input type="password"
+                               class="form-control form-control-sm"
+                               th:classappend="${passwordError} ? 'is-invalid': ''"
+                               placeholder="Password"
                                name="password">
+                        <div th:if="${passwordError}" class="invalid-feedback" th:text="${passwordError}"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password"
+                               class="form-control form-control-sm"
+                               th:classappend="${password2Error} ? 'is-invalid': ''"
+                               placeholder="Confirm Password"
+                               name="password2">
+                        <div th:if="${password2Error}" class="invalid-feedback" th:text="${password2Error}"></div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

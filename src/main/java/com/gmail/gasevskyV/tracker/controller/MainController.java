@@ -51,7 +51,6 @@ public class MainController {
         User currentUser = userService.getCurrentUser(user, oAuth2User);
         item.setAuthor(currentUser);
 
-        log.info("item: " + item.getTask()+"##"+item.getDescription());
         if (bindingResult.hasErrors()) {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             errorsMap.forEach((k,v)-> {
