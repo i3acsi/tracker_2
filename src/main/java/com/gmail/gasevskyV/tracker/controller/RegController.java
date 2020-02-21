@@ -4,6 +4,7 @@ import com.gmail.gasevskyV.tracker.controller.util.ControllerUtils;
 import com.gmail.gasevskyV.tracker.entity.User;
 import com.gmail.gasevskyV.tracker.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,9 @@ import java.util.Map;
 @AllArgsConstructor
 public class RegController {
     private final UserService userService;
+
+    @Autowired
+    private ICaptchaService captchaService;
 
     @GetMapping("/signup")
     public String regPage() {
