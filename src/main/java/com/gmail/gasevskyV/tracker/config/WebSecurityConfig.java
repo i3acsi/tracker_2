@@ -66,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                            .userInfoEndpoint()
 //                                .userAuthoritiesMapper(this.userAuthoritiesMapper())
                                     .defaultSuccessUrl("/oauth")
+                .and().rememberMe()
                 .and() .logout().permitAll()
                 .and().csrf().disable()
         ;
