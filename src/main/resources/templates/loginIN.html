@@ -16,6 +16,9 @@
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
+<div th:if="${param.message}">
+    <span th:text="${message}"></span>
+</div>
 <div class="alert alert-danger" role="alert"
      th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null and session[SPRING_SECURITY_LAST_EXCEPTION].message != null}"
      th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">
