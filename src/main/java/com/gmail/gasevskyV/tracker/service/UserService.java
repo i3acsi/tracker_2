@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,6 +24,10 @@ public class UserService implements UserDetailsService {
     private UserRepo userRepo;
     private MailSender mailSender;
     private PasswordEncoder encoder;
+    private Set<Role> roleUser = new HashSet<>();
+    {
+        roleUser.add(Role.ROLE_USER);
+    }
 
     public UserService() {
     }
@@ -60,7 +61,7 @@ public class UserService implements UserDetailsService {
         String password = user.getPassword();
         user.setPassword(encoder.encode(password));
         user.setActive(true);
-        user.setRoles(Set.of(Role.ROLE_USER));
+        user.setRoles(roleUser); //Set.of(Role.ROLE_USER)
         user.setActivationCode(UUID.randomUUID().toString());
         userRepo.save(user);
         if (!StringUtils.isEmpty(user.getEmail())) {
@@ -110,7 +111,7 @@ public class UserService implements UserDetailsService {
             userFromDB.setActive(true);
             userFromDB.setEmail(email);
             userFromDB.setPassword("$2y$12$9LfMJxZo6meaapDwG6vxvufMCB73NgqTHebpOmLVTyrCiN00auRzS");
-            userFromDB.setRoles(Set.of(Role.ROLE_USER));
+            userFromDB.setRoles(roleUser);
 
             userFromDB.setGoogleId(googleId);
             userFromDB.setGoogleName(googleName);
