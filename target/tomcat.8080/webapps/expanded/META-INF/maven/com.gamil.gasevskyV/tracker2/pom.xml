@@ -10,6 +10,7 @@
     </parent>
     <groupId>com.gamil.gasevskyV</groupId>
     <artifactId>tracker2</artifactId>
+
     <packaging>war</packaging>
     <name>tracker2</name>
     <description>Demo project for Spring Boot</description>
