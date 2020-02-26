@@ -1,1 +1,1 @@
-web java -Dserver.port=$PORT $JAVA_OPTS -war target/*.war --spring.datasource.url=${JDBC_DATABASE_URL}
+web java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar --spring.datasource.url=${JDBC_DATABASE_URL}
