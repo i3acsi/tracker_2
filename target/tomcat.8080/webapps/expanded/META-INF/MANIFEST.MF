@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.4.0
+Build-Jdk-Spec: 12
+Implementation-Title: tracker2
+Implementation-Version: 2.2.4.RELEASE
+Main-Class: org.springframework.boot.loader.WarLauncher
+Start-Class: com.gmail.gasevskyV.tracker.TrackerApplication
+Spring-Boot-Version: 2.2.4.RELEASE
+Spring-Boot-Classes: WEB-INF/classes/
+Spring-Boot-Lib: WEB-INF/lib/
+
