@@ -1,1 +1,1 @@
-web java -Dserver.port=$PORT release: ./mvnw -Dliquibase.changeLogFile=src/main/resources/liquibase/db.changelog-master.xml -Dliquibase.url=$JDBC_DATABASE_URL -Dliquibase.promptOnNonLocalDatabase=false liquibase:update
+web java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar release: ./mvnw -Dliquibase.changeLogFile=src/main/resources/liquibase/db.changelog-master.xml -Dliquibase.url=$JDBC_DATABASE_URL -Dliquibase.promptOnNonLocalDatabase=false liquibase:update
