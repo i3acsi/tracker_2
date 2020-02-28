@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT --server.servlet.context-path=/main target/*.war release: ./mvnw liquibase:update
+web: -Dserver.port=$PORT java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT --server.servlet.context-path=/main target/*.war production: ./mvnw liquibase:update
