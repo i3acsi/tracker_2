@@ -16,7 +16,7 @@
     <description>Demo project for Spring Boot</description>
 
     <!--<properties>-->
-        <!--<java.version>11</java.version>-->
+        <!--<java.version>12</java.version>-->
     <!--</properties>-->
 
     <dependencies>
@@ -125,49 +125,57 @@
 
     <build>
         <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>2.0.16</version>
+            </plugin>
+
+
+
+                <!--<plugin>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                <!--</plugin>-->
 
             <!--<plugin>-->
                 <!--<artifactId>maven-compiler-plugin</artifactId>-->
                 <!--<version>3.1</version>-->
                 <!--<configuration>-->
-                    <!--<source>12</source>-->
-                    <!--<target>12</target>-->
+                    <!--<source>1.8</source>-->
+                    <!--<target>1.8</target>-->
                 <!--</configuration>-->
             <!--</plugin>-->
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<version>3.0.0</version>-->
+            <!--</plugin>-->
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.heroku</groupId>
-                                    <artifactId>webapp-runner</artifactId>
-                                    <version>9.0.30.0</version>
-                                    <destFileName>webapp-runner.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-dependency-plugin</artifactId>-->
+                <!--<version>3.1.1</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>copy</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<artifactItems>-->
+                                <!--<artifactItem>-->
+                                    <!--<groupId>com.heroku</groupId>-->
+                                    <!--<artifactId>webapp-runner</artifactId>-->
+                                    <!--<version>9.0.30.0</version>-->
+                                    <!--<destFileName>webapp-runner.jar</destFileName>-->
+                                <!--</artifactItem>-->
+                            <!--</artifactItems>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
