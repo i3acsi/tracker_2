@@ -11,7 +11,7 @@
     <groupId>com.gamil.gasevskyV</groupId>
     <artifactId>tracker2</artifactId>
 
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>tracker2</name>
     <description>Demo project for Spring Boot</description>
 
@@ -137,11 +137,14 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>3.6.2</version>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.liquibase</groupId>-->
+                <!--<artifactId>liquibase-maven-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<changeLogFile>src/main/resources/liquibase/db.changelog-master.xml</changeLogFile>-->
+                <!--</configuration>-->
+                <!--<version>RELEASE</version>-->
+            <!--</plugin>-->
 
         </plugins>
 

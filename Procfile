@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/*.jar --port $PORT release: ./mvnw -Dliquibase.changeLogFile=src/main/resources/liquibase/db.changelog-master.xml -Dliquibase.url=$JDBC_DATABASE_URL -Dliquibase.promptOnNonLocalDatabase=false liquibase:update
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/tracker2-2.2.4.RELEASE.war
