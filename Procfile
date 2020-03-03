@@ -1,1 +1,1 @@
-web: -Dserver.port=$PORT java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT --server.servlet.context-path=/main target/*.war production: ./mvnw liquibase:update
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT --spring.datasource.url=${SPRING_DATASOURCE_URL} --server.servlet.context-path=/main target/*.war ./mvnw liquibase:update

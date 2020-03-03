@@ -3,7 +3,6 @@ D:\projects\spring_web_from_mvn_archetype\tracker_2\src\main\java\com\gmail\gase
 D:\projects\spring_web_from_mvn_archetype\tracker_2\src\main\java\com\gmail\gasevskyV\tracker\repository\UserRepo.java
 D:\projects\spring_web_from_mvn_archetype\tracker_2\src\main\java\com\gmail\gasevskyV\tracker\config\WebSecurityConfig.java
 D:\projects\spring_web_from_mvn_archetype\tracker_2\src\main\java\com\gmail\gasevskyV\tracker\controller\LoginController.java
-D:\projects\spring_web_from_mvn_archetype\tracker_2\src\main\java\com\gmail\gasevskyV\tracker\config\HibernateConfig.java
 D:\projects\spring_web_from_mvn_archetype\tracker_2\src\main\java\com\gmail\gasevskyV\tracker\config\MailConfig.java
 D:\projects\spring_web_from_mvn_archetype\tracker_2\src\main\java\com\gmail\gasevskyV\tracker\entity\Role.java
 D:\projects\spring_web_from_mvn_archetype\tracker_2\src\main\java\com\gmail\gasevskyV\tracker\entity\User.java

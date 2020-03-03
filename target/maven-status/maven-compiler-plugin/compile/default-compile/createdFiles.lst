@@ -1,7 +1,6 @@
 com\gmail\gasevskyV\tracker\controller\GreetingController.class
 com\gmail\gasevskyV\tracker\controller\MainController.class
 com\gmail\gasevskyV\tracker\controller\util\ControllerUtils.class
-com\gmail\gasevskyV\tracker\config\HibernateConfig.class
 com\gmail\gasevskyV\tracker\entity\User.class
 com\gmail\gasevskyV\tracker\entity\dto\CaptchaResponseDto.class
 com\gmail\gasevskyV\tracker\repository\UserRepo.class
